@@ -1,0 +1,14 @@
+-server//服务器模式
+-Xmx 2g //JVM最大允许分配的堆内存，按需分配
+-Xms 2g //JVM初始分配的堆内存，一般和Xmx配置成一样以避免每次gc后JVM重新分配内存。
+-Xmn 256m //年轻代内存大小，整个JVM内存=年轻代 + 年老代 + 持久代
+-XX:PermSize=128m //持久代内存大小
+-Xss256k //设置每个线程的堆栈大小
+-XX:+DisableExplicitGC //忽略手动调用GC, System.gc()的调用就会变成一个空调用，完全不触发GC
+-XX:+UseConcMarkSweepGC //并发标记清除（CMS）收集器
+-XX:+CMSParallelRemarkEnabled //降低标记停顿
+-XX:+UseCMSCompactAtFullCollection //在FULL GC的时候对年老代的压缩
+-XX:LargePageSizeInBytes=128m //内存页的大小
+-XX:+UseFastAccessorMethods //原始类型的快速优化
+-XX:+UseCMSInitiatingOccupancyOnly //使用手动定义初始化定义开始CMS收集
+-XX:CMSInitiatingOccupancyFraction=70 //使用cms作为垃圾回收使用70％后开始CMS收集
