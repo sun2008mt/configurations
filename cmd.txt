@@ -51,3 +51,7 @@ gpasswd -d user1 users     (从组中删除用户)
 groupmod -n user users    （修改组名）
 groupdel users
 
+
+
+7.添加apt软件公钥
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 7FCC7D46ACCC4CF8
