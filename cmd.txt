@@ -1,0 +1,57 @@
+1.通过域名查看IP和连接情况
+ping www.baidu.com
+ping 192.168.1.1
+
+通过IP查看域名
+nslookup www.baidu.com
+nslookup 192.168.1.1
+
+
+
+2.查看已经连接的服务端口(ESTABLISHED)
+netstat -a
+
+查看所有的服务端口(LISTEN,ESTABLISHED)
+netstat -ap
+
+查看具体端口
+netstat -ap | grep 80
+
+
+
+3.查看所有运行程序
+ps -aux
+
+查看具体程序
+ps -aux | grep jdk
+
+
+
+4.清理残留数据（删除软件后）
+dpkg -l |grep ^rc|awk '{print $2}' |sudo xargs dpkg -P
+
+
+
+5.用户相关
+useradd user1
+usermod -g users user1         （将用户加入users组）
+usermod -d /users/us1 user1    （修改用户目录）
+userdel user2
+userdel -r user3     （同时删除目录）
+passwd user4         （修改用户登录密码）
+id user5              （查看用户uid和gid）
+finger user6           （查看用户详细信息）
+
+
+
+6.组相关
+groupadd -g 888 users     （组的gid为888）
+gpasswd -a user1 users     (添加用户到组)
+gpasswd -d user1 users     (从组中删除用户)
+groupmod -n user users    （修改组名）
+groupdel users
+
+
+
+7.添加apt软件公钥
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 7FCC7D46ACCC4CF8
