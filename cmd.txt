@@ -1,57 +1,176 @@
-1.ͨ�������鿴IP���������
+1.清理残留配置文件
+dpkg -l |grep ^rc|awk '{print $2}' |sudo xargs dpkg -P
+
+
+
+2.添加32位支持
+dpkg --print-architecture
+dpkg --print-foreign-architectures
+sudo dpkg --add-architecture i386 
+sudo apt -get update
+sudo apt-get dist-upgrade
+
+
+
+3.添加公钥
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 073D307A618E5811
+
+
+
+4.安装eslint-config-airbnb
+
+(
+  export PKG=eslint-config-airbnb;
+  npm info "$PKG" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$PKG"
+)
+
+
+
+5.ssh登录，账户:trips， ip:58.210.177.23, 端口号:22
+ssh trips@58.210.117.23 -p 22
+
+
+
+6.python默认版本设置
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 100
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 150
+
+
+
+7.修改文件所有者
+sudo chown -R 用户名.组名 /目录               （-R代表递归，处理目录下所有文件及子文件夹）
+sudo chown 用户名 文件名  
+
+
+
+8.修改文件权限
+sudo chmod -R u(g)(a)+xwr 文件或目录名         (u,g,a分别代表user，group和all)
+
+
+
+9.更新修复grub引导
+sudo update-grub
+sudo grub-install /dev/sda
+
+
+
+10.Ubuntu模式切换
+切换到命令界面模式：Ctrl + Alt + F4
+回到桌面模式：Ctrl + Alt + F7
+
+
+
+11.postgresql vacuum
+VACUUM FULL [FREEZE] VERBOSE ANALYZE  taxi_trip [ (column [, ...] ) ] ]
+
+
+
+12.创建组和将用户加入组
+sudo groupadd 组名
+sudo adduser 用户名 组名
+
+
+
+13.查看用户及所属的组
+id 用户名
+
+
+
+14.查看磁盘使用情况
+df -hl
+lsblk -l
+fdisk -l
+
+
+
+15.查看某个目录的大小
+du -sh 目录名
+
+
+
+16.xz文件
+sudo tar -Jcf test.xz test/    压缩目录到xz文件
+sudo tar -Jxf test.xz       解压xz文件
+
+
+
+17.wget下载
+ wget -c -r -nd -np -k -L -p -A c,h www.xxx.org/pub/path/
+
+-c  断点续传
+-r  递归下载，下载指定网页某一目录下（包括子目录）的所有文件
+-nd 递归下载时不创建一层一层的目录，把所有的文件下载到当前目录
+-np 递归下载时不搜索上层目录，如wget -c -r www.xxx.org/pub/path/
+    没有加参数-np，就会同时下载path的上一级目录pub下的其它文件
+-k  将绝对链接转为相对链接，下载整个站点后脱机浏览网页，最好加上这个参数
+-L  递归时不进入其它主机，如wget -c -r www.xxx.org/ 如果网站内有一个这样的链接：
+    www.yyy.org，不加参数-L，就会像大火烧山一样，会递归下载www.yyy.org网站
+-p  下载网页所需的所有文件，如图片等
+-A  指定要下载的文件样式列表，多个样式用逗号分隔
+
+
+
+18.ping和nslookup
 ping www.baidu.com
 ping 192.168.1.1
 
-ͨ��IP�鿴����
 nslookup www.baidu.com
 nslookup 192.168.1.1
 
 
 
-2.�鿴�Ѿ����ӵķ���˿�(ESTABLISHED)
+19.netstat
 netstat -a
 
-�鿴���еķ���˿�(LISTEN,ESTABLISHED)
 netstat -ap
 
-�鿴����˿�
 netstat -ap | grep 80
 
 
 
-3.�鿴�������г���
+20.ps
 ps -aux
 
-�鿴�������
 ps -aux | grep jdk
 
 
 
-4.�����������ݣ�ɾ��������
-dpkg -l |grep ^rc|awk '{print $2}' |sudo xargs dpkg -P
-
-
-
-5.�û����
+21.用户和组
 useradd user1
-usermod -g users user1         �����û�����users�飩
-usermod -d /users/us1 user1    ���޸��û�Ŀ¼��
+usermod -g users user1         
+usermod -d /users/us1 user1    
 userdel user2
-userdel -r user3     ��ͬʱɾ��Ŀ¼��
-passwd user4         ���޸��û���¼���룩
-id user5              ���鿴�û�uid��gid��
-finger user6           ���鿴�û���ϸ��Ϣ��
+userdel -r user3    
+passwd user4        
+id user5           
+finger user6           
 
-
-
-6.�����
-groupadd -g 888 users     �����gidΪ888��
-gpasswd -a user1 users     (�����û�����)
-gpasswd -d user1 users     (������ɾ���û�)
-groupmod -n user users    ���޸�������
+groupadd -g 888 users     
+gpasswd -a user1 users    
+gpasswd -d user1 users    
+groupmod -n user users   
 groupdel users
 
 
 
-7.����apt������Կ
-sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 7FCC7D46ACCC4CF8
+22.查看ubuntu版本信息
+cat/etc/issue
+
+
+
+23.防火墙设置
+查看防火墙状态
+sudo ufw status
+
+允许某特定端口
+sudo ufw allow 80
+
+允许某特定IP
+sudo ufw allow from 1.1.1.1
+
+删除 smtp 端口的许可
+sudo ufw delete allow smtp
+
+
+
+24.
