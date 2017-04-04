@@ -174,3 +174,5 @@ sudo ufw delete allow smtp
 
 
 24.
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
