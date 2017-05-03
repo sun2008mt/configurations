@@ -182,6 +182,11 @@ sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
 
 
 
-24.管理java版本
+25.管理java版本
 sudo update-alternatives --config java
 sudo update-alternatives --config javac
+
+
+
+26.定时执行命令
+crontab
