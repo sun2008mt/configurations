@@ -26,8 +26,8 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 073D307A618E5811
 
 
 
-5.ssh登录，账户:trips， ip:58.210.177.23, 端口号:22
-ssh trips@58.210.117.23 -p 22
+5.ssh登录，账户:trips， ip:192.168.1.10, 端口号:22
+ssh trips@192.168.1.10 -p 22
 
 
 
@@ -173,4 +173,10 @@ sudo ufw delete allow smtp
 
 
 
-24.
+24.查看系统内存占用以及清理
+/proc/sys/vm/drop_caches有４个值：０表示不释放，１表示释放页缓存，２表示释放dentries和inodes 3表示释放所有缓存
+
+free --human
+cat /proc/sys/vm/drop_caches
+sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
+
