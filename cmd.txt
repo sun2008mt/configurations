@@ -180,3 +180,8 @@ free --human
 cat /proc/sys/vm/drop_caches
 sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
 
+
+
+24.管理java版本
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
